@@ -5,26 +5,41 @@ description: An open-source Flask web panel for a USB-connected Meshtastic board
 
 # The control panel
 
-**The control panel is a small Python web app that runs on the computer a Meshtastic board is plugged into.** It switches the board between operating modes with one click and shows a live dashboard of what the radio hears. It runs on macOS, Linux and Raspberry Pi, and works offline.
+**The control panel is a small Python web app that runs on the computer a Meshtastic board is plugged into.** It switches the board between operating modes with one click and shows a live dashboard of what the radio hears. It runs on Windows 10/11, macOS, Linux and Raspberry Pi, and works offline.
 
 ![Live view of the mesh: nodes heard on the left, this board in the middle, outputs on the right](assets/img/panel-live-view.png)
 
 ## Run it
 
+**Windows (PowerShell):**
+
+```powershell
+git clone https://github.com/EdibleMakerspace/Meshtastic-sg.git
+cd Meshtastic-sg\panel
+py -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python server.py --mock          # simulated board, no hardware needed
+python server.py                 # real board (auto-detects the COM port)
+```
+
+**macOS / Linux / Raspberry Pi:**
+
 ```bash
-git clone https://github.com/saadcaffeine/Meshtastic-GOSHkathmandu.git
-cd Meshtastic-GOSHkathmandu/panel
+git clone https://github.com/EdibleMakerspace/Meshtastic-sg.git
+cd Meshtastic-sg/panel
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-python server.py --mock     # simulated board, no hardware needed
-python server.py            # real board (auto-detects the USB port)
+python3 server.py --mock
 ```
+
+If PowerShell blocks the activate script, see [Windows setup](windows-setup.md#5-run-the-panel-on-windows).
 
 Then open <http://127.0.0.1:8080>.
 
 | Option | What it does |
 |---|---|
-| `--port /dev/cu.usbmodem1101` | use a specific serial port |
+| `--port COM5` | use a specific serial port (`/dev/ttyACM0` on Linux) |
 | `--mock` | simulate a board (good for demos and development) |
 | `--host 0.0.0.0 --token SECRET` | open the panel to your network; changing modes then needs the token |
 | `--web-port 8080` | the web page's port |
@@ -60,7 +75,7 @@ The **Messages** card works like a simplified Meshtastic app:
 
 - **Conversations:** channels (for example `#LongFast`) and direct messages, with unread counts. Start a direct message with any node from the dropdown.
 - **Messages:** incoming bubbles show the sender in their node colour, the time, SNR and hops. Your own messages show their delivery status: *sending → sent → heard by the mesh* (channel) or *delivered* (direct), or *no answer* / *not delivered*.
-- **Sending:** Enter sends and Shift+Enter starts a new line. A counter keeps you under Meshtastic's 200-byte limit (emoji and Nepali script take several bytes per character). With `--token`, sending needs the token.
+- **Sending:** Enter sends and Shift+Enter starts a new line. A counter keeps you under Meshtastic's 200-byte limit (emoji take 4 bytes, and Chinese and Tamil characters 3 bytes each, so a Chinese or Tamil message fits roughly 66 characters). With `--token`, sending needs the token.
 - History is saved on the computer in `panel/data/messages.jsonl`.
 
 ![Messages add-on with a channel conversation and a direct message](assets/img/panel-messages.png)
@@ -74,7 +89,7 @@ python server.py --modules messages   # choose modules (comma-separated)
 python server.py --modules none       # core panel only
 ```
 
-To write one, see the template in [`panel/modules/README.md`](https://github.com/saadcaffeine/Meshtastic-GOSHkathmandu/blob/main/panel/modules/README.md). A module can react to every packet, add API endpoints and draw its own card using the panel's colours and icons.
+To write one, see the template in [`panel/modules/README.md`](https://github.com/EdibleMakerspace/Meshtastic-sg/blob/main/panel/modules/README.md). A module can react to every packet, add API endpoints and draw its own card using the panel's colours and icons.
 
 ## Reading the indicators
 
@@ -92,4 +107,4 @@ To write one, see the template in [`panel/modules/README.md`](https://github.com
 - `server.py` is a [Flask](https://flask.palletsprojects.com/) app. It keeps per-node statistics from received packets, logs Paxcounter readings to `data/pax_log.csv`, and uses [paho-mqtt](https://github.com/eclipse-paho/paho.mqtt.python) to confirm uplink or forward proxy traffic.
 - `static/index.html` is a single offline page with no build step. Device pictures come from Meshtastic's [web flasher](https://github.com/meshtastic/web-flasher) images when online, with drawn shapes as a fallback.
 
-Source: [`panel/`](https://github.com/saadcaffeine/Meshtastic-GOSHkathmandu/tree/main/panel).
+Source: [`panel/`](https://github.com/EdibleMakerspace/Meshtastic-sg/tree/main/panel).

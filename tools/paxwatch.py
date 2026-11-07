@@ -12,10 +12,10 @@ except ImportError:
     from meshtastic import paxcount_pb2, mqtt_pb2
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--port", help="serial port, e.g. /dev/cu.usbmodem1101")
+ap.add_argument("--port", help="serial port, e.g. COM5 on Windows, /dev/ttyACM0 on Linux")
 ap.add_argument("--mqtt", action="store_true",
                 help="also count messages on the public broker")
-ap.add_argument("--topic", default="msh/NP_865/#")
+ap.add_argument("--topic", default="msh/SG_923/#")
 ap.add_argument("--nodes", nargs="*", default=[],
                 help="node IDs to track on the broker, e.g. !433c7430")
 ap.add_argument("--every", type=int, default=30, help="summary seconds")

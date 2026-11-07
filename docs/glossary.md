@@ -14,7 +14,7 @@ description: Plain-language definitions of Meshtastic and LoRa terms - node, mes
 | **Channel** | A named group with its own encryption key, like a WiFi network name plus password. The default primary channel has an empty name (shown as LongFast) and a public key. |
 | **Channel utilisation** | Share of time the radio hears *any* LoRa traffic. Shown as "Channel busy"; above about 25% the mesh is getting crowded. |
 | **CLI** | The `meshtastic` command-line tool from the [Python library](https://meshtastic.org/docs/software/python/cli/). |
-| **Duty cycle** | A legal limit on how much of the time you may transmit. `NP_865` allows 100%; some EU bands allow only 1–10%. |
+| **Duty cycle** | A legal limit on how much of the time you may transmit. `SG_923` is set to 100% in the firmware, but check IMDA's current rules; some EU bands allow only 1–10%. |
 | **Firmware** | The software on the board. Flash it with the [web flasher](https://flasher.meshtastic.org/); keep all boards on the same version. |
 | **Hop / hop limit** | One relay by another node. The hop limit (default 3) caps how many times a message is relayed. |
 | **ISM band** | Licence-exempt radio bands such as 2.4 GHz (WiFi/Bluetooth) and sub-GHz bands like 865–868 MHz, subject to national rules. |
@@ -31,7 +31,7 @@ description: Plain-language definitions of Meshtastic and LoRa terms - node, mes
 | **PKC** | Public-key cryptography, used for direct messages since firmware 2.5 (`hasPKC: True`). |
 | **Position precision** | How much a shared location is blurred. Lower bit values mean a bigger blur; meshmap.net needs between about 364 m and 23.3 km. |
 | **PSK** | Pre-shared key: a channel's encryption key. `default` / `AQ==` is the public default key. |
-| **Region** | Which band and power rules the radio follows. Nepal: `NP_865`. |
+| **Region** | Which band and power rules the radio follows. Singapore: `SG_923`. |
 | **RSSI** | Received signal strength in dBm. Closer to 0 is stronger; about −120 dBm is near the limit. |
 | **SNR** | Signal-to-noise ratio in dB. LoRa decodes below the noise floor, so negative values are normal. |
 | **Spreading factor (SF)** | How much each bit is spread out in time. Higher SF gives more range and less speed; LongFast uses SF11. |

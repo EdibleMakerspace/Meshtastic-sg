@@ -37,7 +37,7 @@ class Module(BaseModule):
         if not os.path.exists(self.path):
             return
         try:
-            with open(self.path) as f:
+            with open(self.path, encoding="utf-8") as f:
                 for line in f:
                     try:
                         r = json.loads(line)
@@ -54,7 +54,7 @@ class Module(BaseModule):
 
     def _write(self, rec):
         try:
-            with open(self.path, "a") as f:
+            with open(self.path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
         except OSError as e:
             self.panel.event("messages: could not save (%s)" % e)

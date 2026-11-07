@@ -15,8 +15,8 @@ MQTT is a lightweight publish/subscribe messaging protocol. A Meshtastic node wi
 |---|---|
 | Server | `mqtt.meshtastic.org` |
 | Username / password | `meshdev` / `large4cats` (public, shared by everyone) |
-| Root topic | `msh/NP_865` in Nepal (`msh/<REGION>`) |
-| Topic for a node's packets | `msh/NP_865/2/e/LongFast/!<nodeid>` |
+| Root topic | `msh/SG_923` in Singapore (`msh/<REGION>`) |
+| Topic for a node's packets | `msh/SG_923/2/e/LongFast/!<nodeid>` |
 
 Docs: [MQTT module settings](https://meshtastic.org/docs/configuration/module/mqtt/) · [MQTT integration](https://meshtastic.org/docs/software/integrations/mqtt/).
 
@@ -34,15 +34,23 @@ From the [meshmap.net README](https://github.com/brianshea2/meshmap.net):
 
 ## With the CLI
 
-```bash
+```powershell
+# On Windows, run each line as:  py -m meshtastic <arguments>
 meshtastic --set network.wifi_enabled true --set network.wifi_ssid "YourWiFi" --set network.wifi_psk "YourPassword"
 meshtastic --set bluetooth.enabled false --set paxcounter.enabled false
 meshtastic --set mqtt.enabled true --set mqtt.map_reporting_enabled true --set lora.config_ok_to_mqtt true
 meshtastic --ch-index 0 --ch-set uplink_enabled true --ch-set module_settings.position_precision 13
-meshtastic --setlat 27.70 --setlon 85.32          # a fixed position (example: central Kathmandu)
+meshtastic --setlat 1.35 --setlon 103.82          # a fixed position (example: roughly the middle of Singapore; use your own, blurred)
 ```
 
 Or click **Map reporter** in the [control panel](control-panel.md). It never touches your WiFi name or password, so set those once with the CLI or the web client.
+
+## Singapore: public map and local MQTT
+
+The Singapore community notes there aren't yet enough nodes to form a full island-wide mesh, so some groups use MQTT as an internet backhaul between isolated nodes ([ndoo.sg](https://ndoo.sg/projects:amateur_radio:meshtastic_in_singapore)). Two things to know:
+
+- A local MQTT server is a **third party**. The community's starter file `SG_923_lucifernet.yaml` (in [ndoo/meshtastic-config-my-sg](https://github.com/ndoo/meshtastic-config-my-sg)) points nodes at an MQTT server run by 9W2LWK. **Read any config file before applying it**, because it changes your node's settings and where it sends data.
+- Different regions can't hear each other even through MQTT ([SARTS guide](https://sarts.org.sg/wp/wp-content/uploads/2024/06/getting_started_with_meshtastic_in_singapore.pdf)), so every node you bridge must be on `SG_923`.
 
 ## Tips from this project
 

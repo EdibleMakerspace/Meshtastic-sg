@@ -1,6 +1,6 @@
 # Meshtastic control panel
 
-A small web app that runs on the computer a [Meshtastic](https://meshtastic.org/) board is plugged into (macOS, Linux or Raspberry Pi). It switches the board between operating modes and shows a live dashboard of what it hears.
+A small web app that runs on the computer a [Meshtastic](https://meshtastic.org/) board is plugged into (Windows, macOS, Linux or Raspberry Pi). It switches the board between operating modes and shows a live dashboard of what it hears.
 
 ![Control panel](../docs/assets/img/panel-overview.png)
 
@@ -8,12 +8,24 @@ Full guide: [docs/control-panel.md](../docs/control-panel.md)
 
 ## Install and run
 
+Windows (PowerShell):
+
+```powershell
+py -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python server.py --mock              # simulated board: try it without hardware
+python server.py                     # real board, port auto-detected
+python server.py --port COM5         # or name the port (Device Manager > Ports)
+```
+
+macOS / Linux:
+
 ```bash
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-python server.py --mock                          # simulated board: try it without hardware
-python server.py                                 # real board, port auto-detected
-python server.py --port /dev/cu.usbmodem1101     # or name the port
+python server.py --mock
+python server.py --port /dev/ttyACM0
 ```
 
 Open <http://127.0.0.1:8080>. Only one program can use the USB port, so close the Meshtastic web client and any serial monitor first.
@@ -69,5 +81,5 @@ The raw-data view hides private keys, channel keys and passwords. Paxcounter log
 
 ## Known limits
 
-- Mode switching, USB proxy and map reporting have had limited testing on real boards (firmware 2.5.x).
+- Mode switching, USB proxy and map reporting have had limited testing on real boards (firmware 2.5.x, on the Kathmandu build).
 - The device pictures need internet the first time; offline, the panel draws simple shapes instead.

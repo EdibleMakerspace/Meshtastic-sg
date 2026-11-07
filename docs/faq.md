@@ -1,11 +1,11 @@
 ---
-title: Meshtastic and LoRa FAQ for Nepal
-description: Short answers about Meshtastic and LoRa in Nepal - frequency (NP_865, 867.875 MHz), range, LoRa vs WiFi, Bluetooth and LoRaWAN, nodes that can't hear each other, Paxcounter, meshmap.net and privacy.
+title: Meshtastic and LoRa FAQ for Singapore
+description: Short answers about Meshtastic and LoRa in Singapore - frequency (SG_923, 917.875 MHz), Windows setup, range, LoRa vs WiFi, Bluetooth and LoRaWAN, nodes that can't hear each other, Paxcounter, meshmap.net and privacy.
 ---
 
 # FAQ
 
-**Short, direct answers to the questions people ask most about Meshtastic and LoRa in Nepal.** Each links to a longer page.
+**Short, direct answers to the questions people ask most about Meshtastic and LoRa in Singapore.** Each links to a longer page.
 
 ## What is Meshtastic?
 
@@ -13,21 +13,21 @@ Meshtastic is free, open-source firmware that turns inexpensive LoRa radio board
 
 More: [LoRa for WiFi and Bluetooth users](lora-for-wifi-and-bluetooth-users.md)
 
-## Which frequency does Meshtastic use in Nepal?
+## Which frequency does Meshtastic use in Singapore?
 
-Nepal uses the NP_865 region: 865.0–868.0 MHz, 100% duty cycle, up to 30 dBm. With the default LongFast preset and channel, nodes use 867.875 MHz.
+Singapore uses the SG_923 region: 917.0–925.0 MHz, with a firmware power limit of 20 dBm (100 mW). With the default LongFast preset and channel, nodes use 917.875 MHz.
 
-More: [Nepal: NP_865](nepal-np865.md)
+More: [Singapore: SG_923](singapore-sg923.md)
 
 ## How far can Meshtastic LoRa reach?
 
-Typically 1–10 km or more with a clear line of sight between elevated nodes, and hundreds of metres to a few kilometres in a dense city like Kathmandu. Height and a good 868 MHz antenna matter more than transmit power.
+Typically 1–10 km or more with a clear line of sight between elevated nodes, and hundreds of metres to a few kilometres in a dense, high-rise city like Singapore. Height and a good 915/923 MHz antenna matter more than transmit power.
 
 More: [Hardware](hardware.md)
 
 ## How is LoRa different from WiFi and Bluetooth?
 
-LoRa sends very little data (about 1 kbit/s on LongFast) but reaches kilometres using little power, on sub-GHz frequencies (865–868 MHz in Nepal). WiFi and Bluetooth are fast but short-range on 2.4 GHz. Meshtastic nodes relay for each other, so no router is needed.
+LoRa sends very little data (about 1 kbit/s on LongFast) but reaches kilometres using little power, on sub-GHz frequencies (917–925 MHz in Singapore). WiFi and Bluetooth are fast but short-range on 2.4 GHz. Meshtastic nodes relay for each other, so no router is needed.
 
 More: [LoRa for WiFi and Bluetooth users](lora-for-wifi-and-bluetooth-users.md)
 
@@ -39,7 +39,7 @@ More: [LoRa for WiFi and Bluetooth users](lora-for-wifi-and-bluetooth-users.md)
 
 ## Why can't my Meshtastic node see other nodes?
 
-Check that all nodes share the same region (NP_865), preset (LONG_FAST), channel name and key; that the antenna is attached and made for 868 MHz; and that all boards run the same firmware version. In this project a Heltec V3 on firmware 2.7.26 could not hear XIAO boards on 2.5.2 until it was reflashed to match.
+Check that all nodes share the same region (SG_923), preset (LONG_FAST), channel name and key; that the antenna is attached and made for 915/923 MHz; and that all boards run the same firmware version. On the Kathmandu build this guide is based on, a Heltec V3 on firmware 2.7.26 could not hear XIAO boards on 2.5.2 until it was reflashed to match.
 
 More: [Troubleshooting](troubleshooting.md)
 
@@ -61,9 +61,9 @@ Use the default primary channel and key, turn on OK to MQTT, enable the MQTT mod
 
 More: [Map reporting and MQTT](map-reporting-mqtt.md)
 
-## Which boards work well for Meshtastic in Nepal?
+## Which boards work well for Meshtastic in Singapore?
 
-This project uses the Heltec WiFi LoRa 32 V3 and the Seeed XIAO ESP32S3 with Wio-SX1262 kit, both ESP32-S3 + SX1262 boards. Buy the 863–928 MHz (high-band) versions.
+This project is built around the Seeed XIAO ESP32S3 with Wio-SX1262 kit and also works with the Heltec WiFi LoRa 32 V3; both are ESP32-S3 + SX1262 boards. Buy the 923 MHz version if offered, otherwise 915 MHz (both are 863–928 MHz high-band).
 
 More: [Hardware](hardware.md)
 
@@ -78,6 +78,18 @@ More: [LoRa for WiFi and Bluetooth users](lora-for-wifi-and-bluetooth-users.md)
 Signal-to-noise ratio in dB. LoRa can decode signals below the noise floor, so negative SNR is normal; on LongFast packets still decode down to roughly −15 dB.
 
 More: [The control panel](control-panel.md)
+
+## Is Meshtastic legal to use in Singapore?
+
+Meshtastic's SG_923 region follows the 917–925 MHz short-range-device band with a 20 dBm (100 mW) firmware limit, but the sources disagree on the duty-cycle limit (100% versus 10%), so stay on the defaults and check IMDA's current standard. This is not legal advice.
+
+More: [Singapore: SG_923, Is it legal?](singapore-sg923.md#is-it-legal)
+
+## Can I set this up on Windows?
+
+Yes. Install Python with the py launcher, use a USB data cable, flash with the web flasher in Chrome or Edge, and run every command as py -m meshtastic. The Seeed XIAO ESP32S3 appears as a COM port using the driver Windows already includes.
+
+More: [Windows setup](windows-setup.md)
 
 <script type="application/ld+json">
 {
@@ -94,10 +106,10 @@ More: [The control panel](control-panel.md)
   },
   {
    "@type": "Question",
-   "name": "Which frequency does Meshtastic use in Nepal?",
+   "name": "Which frequency does Meshtastic use in Singapore?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Nepal uses the NP_865 region: 865.0–868.0 MHz, 100% duty cycle, up to 30 dBm. With the default LongFast preset and channel, nodes use 867.875 MHz."
+    "text": "Singapore uses the SG_923 region: 917.0–925.0 MHz, with a firmware power limit of 20 dBm (100 mW). With the default LongFast preset and channel, nodes use 917.875 MHz."
    }
   },
   {
@@ -105,7 +117,7 @@ More: [The control panel](control-panel.md)
    "name": "How far can Meshtastic LoRa reach?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Typically 1–10 km or more with a clear line of sight between elevated nodes, and hundreds of metres to a few kilometres in a dense city like Kathmandu. Height and a good 868 MHz antenna matter more than transmit power."
+    "text": "Typically 1–10 km or more with a clear line of sight between elevated nodes, and hundreds of metres to a few kilometres in a dense, high-rise city like Singapore. Height and a good 915/923 MHz antenna matter more than transmit power."
    }
   },
   {
@@ -113,7 +125,7 @@ More: [The control panel](control-panel.md)
    "name": "How is LoRa different from WiFi and Bluetooth?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "LoRa sends very little data (about 1 kbit/s on LongFast) but reaches kilometres using little power, on sub-GHz frequencies (865–868 MHz in Nepal). WiFi and Bluetooth are fast but short-range on 2.4 GHz. Meshtastic nodes relay for each other, so no router is needed."
+    "text": "LoRa sends very little data (about 1 kbit/s on LongFast) but reaches kilometres using little power, on sub-GHz frequencies (917–925 MHz in Singapore). WiFi and Bluetooth are fast but short-range on 2.4 GHz. Meshtastic nodes relay for each other, so no router is needed."
    }
   },
   {
@@ -129,7 +141,7 @@ More: [The control panel](control-panel.md)
    "name": "Why can't my Meshtastic node see other nodes?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Check that all nodes share the same region (NP_865), preset (LONG_FAST), channel name and key; that the antenna is attached and made for 868 MHz; and that all boards run the same firmware version. In this project a Heltec V3 on firmware 2.7.26 could not hear XIAO boards on 2.5.2 until it was reflashed to match."
+    "text": "Check that all nodes share the same region (SG_923), preset (LONG_FAST), channel name and key; that the antenna is attached and made for 915/923 MHz; and that all boards run the same firmware version. On the Kathmandu build this guide is based on, a Heltec V3 on firmware 2.7.26 could not hear XIAO boards on 2.5.2 until it was reflashed to match."
    }
   },
   {
@@ -158,10 +170,10 @@ More: [The control panel](control-panel.md)
   },
   {
    "@type": "Question",
-   "name": "Which boards work well for Meshtastic in Nepal?",
+   "name": "Which boards work well for Meshtastic in Singapore?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "This project uses the Heltec WiFi LoRa 32 V3 and the Seeed XIAO ESP32S3 with Wio-SX1262 kit, both ESP32-S3 + SX1262 boards. Buy the 863–928 MHz (high-band) versions."
+    "text": "This project is built around the Seeed XIAO ESP32S3 with Wio-SX1262 kit and also works with the Heltec WiFi LoRa 32 V3; both are ESP32-S3 + SX1262 boards. Buy the 923 MHz version if offered, otherwise 915 MHz (both are 863–928 MHz high-band)."
    }
   },
   {
@@ -178,6 +190,22 @@ More: [The control panel](control-panel.md)
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "Signal-to-noise ratio in dB. LoRa can decode signals below the noise floor, so negative SNR is normal; on LongFast packets still decode down to roughly −15 dB."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is Meshtastic legal to use in Singapore?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Meshtastic's SG_923 region follows the 917–925 MHz short-range-device band with a 20 dBm (100 mW) firmware limit, but the sources disagree on the duty-cycle limit (100% versus 10%), so stay on the defaults and check IMDA's current standard. This is not legal advice."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I set this up on Windows?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Install Python with the py launcher, use a USB data cable, flash with the web flasher in Chrome or Edge, and run every command as py -m meshtastic. The Seeed XIAO ESP32S3 appears as a COM port using the driver Windows already includes."
    }
   }
  ]

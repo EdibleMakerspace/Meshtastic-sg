@@ -11,10 +11,10 @@ description: How LoRa and Meshtastic differ from WiFi and Bluetooth in range, sp
 
 | | WiFi | Bluetooth (BLE) | LoRa with Meshtastic |
 |---|---|---|---|
-| Range | tens of metres | metres to tens of metres | typically 1–10+ km with a clear line of sight; hundreds of metres to a few km in a dense city |
+| Range | tens of metres | metres to tens of metres | typically 1–10+ km with a clear line of sight; hundreds of metres to a few km in a dense, high-rise city |
 | Data rate | Mbit/s to Gbit/s | about 1–2 Mbit/s | about 1 kbit/s on the default `LONG_FAST` preset |
 | What you send | anything: video, web pages | audio, files, sensor data | short text messages, positions, sensor readings |
-| Frequency | 2.4 / 5 / 6 GHz | 2.4 GHz | sub-GHz; in Nepal **865–868 MHz** |
+| Frequency | 2.4 / 5 / 6 GHz | 2.4 GHz | sub-GHz; in Singapore **917–925 MHz** |
 | Network shape | star (devices ↔ router) | point-to-point or star | **mesh**: every node can relay for others |
 | Internet needed? | usually | no | **no** (optional bridge via MQTT) |
 | Power use | high | low | very low |
@@ -37,7 +37,7 @@ With WiFi, your phone talks to a router. With Meshtastic, there is no router: wh
 
 | Setting | WiFi/Bluetooth analogy | Meshtastic meaning |
 |---|---|---|
-| **Region** (e.g. `NP_865`) | the country setting on a router | which frequencies and power the radio may legally use |
+| **Region** (e.g. `SG_923`) | the country setting on a router | which frequencies and power the radio may legally use |
 | **Modem preset** (e.g. `LONG_FAST`) | 802.11n vs 802.11ac | trade-off between range and speed (spreading factor and bandwidth) |
 | **Channel** and **key (PSK)** | network name (SSID) and password | which messages your node can decrypt; the default channel uses a well-known public key |
 | **Frequency slot** | the WiFi channel number | worked out automatically from the region, preset and channel name |

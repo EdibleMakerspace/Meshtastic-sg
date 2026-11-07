@@ -438,18 +438,18 @@ class MockRadio:
         self._people = 6
         self.conn = _new_conn()
         self.conn.update(connected_at=self._t0, last_connected=self._t0, connects=1,
-                         device_path="/dev/cu.usbmodem1101 (simulated)",
+                         device_path="COM5 (simulated)",
                          usb={"usb_description": "USB JTAG/serial debug unit", "usb_manufacturer": "Espressif",
                               "usb_serial": "MOCK0938", "usb_vid_pid": "303a:1001"})
         self.last_board = None
-        self.cfg = {"region": "NP_865", "preset": "LONG_FAST", "wifi": True,
+        self.cfg = {"region": "SG_923", "preset": "LONG_FAST", "wifi": True,
                     "bluetooth": False, "paxcounter": False, "pax_interval": 60,
                     "mqtt": True, "mqtt_proxy": False, "map_reporting": True, "ok_to_mqtt": True,
-                    "mqtt_root": "msh/NP_865", "uplink": True, "channel_name": ""}
+                    "mqtt_root": "msh/SG_923", "uplink": True, "channel_name": ""}
         self.others = [
             {"id": "!a1f80460", "long": "Meshtastic 0460", "short": "0460",
              "hw": "SEEED_XIAO_S3", "snr": 5.5, "hops": 0, "battery": 101},
-            {"id": "!433c7430", "long": "GOSH-Saad-gsh1", "short": "gsh1",
+            {"id": "!433c7430", "long": "EMS-Lab-ems1", "short": "ems1",
              "hw": "HELTEC_V3", "snr": -3.0, "hops": 1, "battery": 87}]
         for o in self.others:   # boards without a clock keep a stale "last heard"
             o["last_heard"] = int(time.time()) - 6 * 3600
@@ -485,8 +485,8 @@ class MockRadio:
                 dec = {"portnum": port}
                 dm = False
                 if port == "TEXT_MESSAGE_APP":
-                    t = random.choice(["namaste from the bench", "anyone on LongFast?", "signal check: hearing you 5/5",
-                                       "paxcounter says 12 people in the lab", "testing from the roof"])
+                    t = random.choice(["hello from the kitchen bench", "anyone on LongFast?", "signal check: hearing you 5/5",
+                                       "paxcounter says 12 people at the workshop", "testing from the rooftop garden"])
                     dec.update(text=t, payload=t.encode())
                     dm = random.random() < 0.3
                 elif port == "NODEINFO_APP":
@@ -514,7 +514,7 @@ class MockRadio:
                 self.h.pax({"ts": now, "from": "!a1f80938",
                             "wifi": self._people - ble, "ble": ble})
             if self.cfg["mqtt_proxy"] and self.cfg["mqtt"] and tick % 10 == 0:
-                self.h.proxy("msh/NP_865/2/e/LongFast/!a1f80938", b"\x00", False)
+                self.h.proxy("msh/SG_923/2/e/LongFast/!a1f80938", b"\x00", False)
 
     def snapshot(self):
         now = time.time()

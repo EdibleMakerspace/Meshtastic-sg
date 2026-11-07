@@ -1,16 +1,26 @@
 # Tools
 
-Small command-line helpers for Meshtastic boards on USB. They need the [Meshtastic Python library](https://meshtastic.org/docs/software/python/cli/installation/) (`pip install "meshtastic[cli]"`); `paxwatch.py --mqtt` also needs `paho-mqtt`.
+Small command-line helpers for Meshtastic boards on USB. They need the [Meshtastic Python library](https://meshtastic.org/docs/software/python/cli/installation/) (`pip install "meshtastic[cli]"`); `paxwatch.py --mqtt` also needs `paho-mqtt`. On Windows use `py` instead of `python3`, and COM ports such as `COM5`.
 
 Close the web client, the control panel and any serial monitor first, because only one program can use the USB port.
+
+## `setup-sg.ps1`: one-shot Singapore setup for Windows
+
+```powershell
+.\setup-sg.ps1                                   # finds the board, asks before changing anything
+.\setup-sg.ps1 -Port COM5 -Name "EMS workshop node" -ShortName EMS1
+```
+
+Installs the Meshtastic CLI, shows the current region, asks you to confirm, then sets region `SG_923`, preset `LONG_FAST`, owner names and the UTC+8 time zone. It never prints `--info`. Flash the firmware first (see [Getting started](../docs/getting-started.md)).
 
 ## `radio_check.py`: why can't my boards hear each other?
 
 ```bash
 python radio_check.py                 # report + send a ping + listen 120 s
 python radio_check.py --listen 300    # listen longer
-python radio_check.py --fix           # reset LoRa and channel settings to NP_865 / LONG_FAST / default key
-python radio_check.py --port /dev/cu.usbserial-0001
+python radio_check.py --fix           # reset LoRa and channel settings to SG_923 / LONG_FAST / default key
+python radio_check.py --fix --region MY_919   # ...or another region
+python radio_check.py --port COM5     # Windows; /dev/ttyACM0 on Linux
 ```
 
 It prints the region, preset, computed frequency, channel and key fingerprint (never the key itself). Then it listens and counts packets heard **by radio** from other nodes, and saves `report_<nodeid>.json`. Run it once on each board; from the second run on it prints a side-by-side comparison with `*` marking differences.

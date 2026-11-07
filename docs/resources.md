@@ -1,6 +1,6 @@
 ---
 title: Meshtastic links, documentation and related projects
-description: Official Meshtastic documentation, GitHub repositories, tools, hardware pages, maps and related open-source projects used in this Nepal LoRa mesh guide.
+description: Official Meshtastic documentation, GitHub repositories, tools, hardware pages, maps and related open-source projects used in this Singapore LoRa mesh guide.
 ---
 
 # Links and related projects
@@ -21,6 +21,31 @@ description: Official Meshtastic documentation, GitHub repositories, tools, hard
 | Hardware | [Supported devices](https://meshtastic.org/docs/hardware/devices/) · [Heltec LoRa 32](https://meshtastic.org/docs/hardware/devices/heltec-automation/lora32/) · [Seeed Wio-SX1262 + XIAO ESP32S3](https://meshtastic.org/docs/hardware/devices/seeed-studio/wio-series/wio-sx1262s/?wio-sx1262=esp32-s3) |
 | GitHub | [meshtastic](https://github.com/meshtastic) · [firmware](https://github.com/meshtastic/firmware) ([releases](https://github.com/meshtastic/firmware/releases)) · [python](https://github.com/meshtastic/python) · [web](https://github.com/meshtastic/web) · [web-flasher](https://github.com/meshtastic/web-flasher) · [protobufs](https://github.com/meshtastic/protobufs) |
 
+## Singapore regulation and community (6 links)
+
+| What | Link |
+|---|---|
+| IMDA short-range device standard (TS SRD) | [IMDA radio communication equipment standards](https://www.imda.gov.sg/regulations-and-licensing-listing/ict-standards-and-quality-of-service/telecommunication-and-security-standards/radio-communication-equipment-standards) |
+| Meshtastic in Singapore guide | [ndoo.sg](https://ndoo.sg/projects:amateur_radio:meshtastic_in_singapore) (Andrew Yong, N4ISE) |
+| SARTS Meshtastic talks | [sarts.org.sg/tag/meshtastic](https://www.sarts.org.sg/tag/meshtastic/) |
+| Singapore region discussion on the firmware repo | [meshtastic/firmware PR #2695](https://github.com/meshtastic/firmware/pull/2695) |
+| Frequency-plan forum thread (SG_923 vs MY_919) | [Meshtastic forum](https://meshtastic.discourse.group/t/wrong-frequency-plan-for-my-919-and-sg-923/12192) |
+| Open DIY node design by a Singapore maker | [ikoka-nano-meshtastic-device](https://github.com/ndoo/ikoka-nano-meshtastic-device) |
+
+## Edible Makerspace (7 references)
+
+[Edible Makerspace (EMS)](https://fablabs.io/labs/ediblemakerspace) is a Singapore-based community lab for citizen science, DIY biohacking and food-based exploration.
+
+| Type | Reference |
+|---|---|
+| Vision | A multicultural group exploring thinking critically through food prototypes within the Southeast Asian food and agriculture system ([InfoCon DB profile](https://infocondb.org/presenter/edible-makerspace-ems)) |
+| People | Founded by Saad Chinoy and Michelle Lai, a member of the TANAH collective ([HKW profile](https://archiv.hkw.de/en/programm/beitragende_hkw/l/michelle_lai.php)) |
+| Event | HOPE 2020: [Glow in the (Edible) Dyes](https://infocondb.org/con/hope/hope-2020/glow-in-the-edible-dyes) workshop |
+| Event / partners | Live [Soil Microscopy workshop](https://peatix.com/event/1717913/view/atom), 20 Nov 2020, with the Soil Regeneration Project and support from GreenCircle Eco-Farm |
+| Event | NTU CCA Singapore [IdeasFest 2023](https://sagg.info/event/ntu-cca-ideasfest-2023-exhibitions-2/), 16–19 Feb 2023: *LaserToast*, lasercut edible materials, courtesy EMS |
+| Event | re:publica, [EcoPrints: BioPigments and SCOBY vegan leather](https://distributeddesign.eu/?p=13326) |
+| Related | Seeed Studio's hands-on Meshtastic workshop at re:publica: [From Hardware to Mesh](https://www.re-publica.com/de/session/hardware-mesh-prototyping-grid-communication-systems) |
+
 ## Maps
 
 - [meshmap.net](https://meshmap.net/), the public node map ([source and requirements](https://github.com/brianshea2/meshmap.net))
@@ -40,6 +65,6 @@ description: Official Meshtastic documentation, GitHub repositories, tools, hard
 ## Background
 
 - [LoRaWAN, from the LoRa Alliance](https://lora-alliance.org/about-lorawan/), to see how it differs from Meshtastic
-- [Nepal Telecommunications Authority](https://nta.gov.np/) · [Radio Frequency Policy 2080 (PDF)](https://www.nta.gov.np/uploads/contents/Radio-Frequency-Policy-2080-English.pdf)
-- [GOSH: Gathering for Open Science Hardware](https://openhardware.science/)
+- [GOSH: Gathering for Open Science Hardware](https://openhardware.science/), the community behind the original Kathmandu guide
+- [Kathmandu guide this fork is based on](https://github.com/saadcaffeine/Meshtastic-GOSHkathmandu) (Nepal, `NP_865`)
 - [GitHub Pages documentation](https://docs.github.com/en/pages) · [llms.txt](https://llmstxt.org/)

@@ -4,8 +4,8 @@ Thanks for helping! This project is meant to be friendly to first-time contribut
 
 ## Ways to help
 
-- **Report what worked or didn't** on your boards: open an [issue](https://github.com/saadcaffeine/Meshtastic-GOSHkathmandu/issues) with the board, firmware version and what you saw.
-- **Improve the guide** in `docs/`: fix mistakes, add photos of your setup, or translate a page (Nepali translations especially welcome).
+- **Report what worked or didn't** on your boards, especially **real-board results on Windows with the Seeed XIAO ESP32S3**: open an [issue](https://github.com/EdibleMakerspace/Meshtastic-sg/issues) with the board, firmware version and what you saw.
+- **Improve the guide** in `docs/`: fix mistakes, add photos of your setup, or translate a page (Chinese, Malay and Tamil translations especially welcome, covering Singapore's 4 official languages with English).
 - **Improve the panel or tools:** keep `python server.py --mock` working, because it's how everyone tests without hardware.
 
 ## Before you open a pull request

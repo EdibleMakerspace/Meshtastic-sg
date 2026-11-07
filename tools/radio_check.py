@@ -2,10 +2,11 @@
 
 Run with the board on USB (close the web client, the panel and any serial monitor first):
 
-    ~/paxenv/bin/python radio_check.py                 # report + listen 120 s
-    ~/paxenv/bin/python radio_check.py --listen 300    # listen longer
-    ~/paxenv/bin/python radio_check.py --fix           # make LoRa settings match the XIAO boards
-    ~/paxenv/bin/python radio_check.py --port /dev/cu.usbserial-0001
+    py radio_check.py                 # report + listen 120 s        (Windows)
+    py radio_check.py --listen 300    # listen longer
+    py radio_check.py --fix           # reset LoRa/channel settings to SG_923 / LONG_FAST / default key
+    py radio_check.py --port COM5     # name the port (Device Manager > Ports)
+    (macOS / Linux: use python3 and a port like /dev/ttyACM0)
 
 It writes report_<nodeid>.json next to this script. Run it once on the
 Heltec and once on a working XIAO; the two reports are compared automatically.
@@ -22,8 +23,10 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # region: (start MHz, end MHz, spacing MHz) — from the firmware's region table
-REGIONS = {"NP_865": (865.0, 868.0, 0.0), "IN": (865.0, 867.0, 0.0),
-           "EU_868": (869.4, 869.65, 0.0), "US": (902.0, 928.0, 0.0)}
+REGIONS = {"SG_923": (917.0, 925.0, 0.0), "MY_919": (919.0, 924.0, 0.0),
+           "TH": (920.0, 925.0, 0.0), "NP_865": (865.0, 868.0, 0.0),
+           "IN": (865.0, 867.0, 0.0), "EU_868": (869.4, 869.65, 0.0),
+           "US": (902.0, 928.0, 0.0)}
 PRESET = {"LONG_FAST": ("LongFast", 250), "LONG_SLOW": ("LongSlow", 125),
           "LONG_MODERATE": ("LongMod", 125), "MEDIUM_FAST": ("MediumFast", 250),
           "MEDIUM_SLOW": ("MediumSlow", 250), "SHORT_FAST": ("ShortFast", 250),
@@ -182,6 +185,8 @@ def main():
     ap.add_argument("--port")
     ap.add_argument("--listen", type=int, default=120)
     ap.add_argument("--fix", action="store_true")
+    ap.add_argument("--region", default="SG_923",
+                    help="region that --fix writes (default: SG_923, Singapore)")
     args = ap.parse_args()
     import meshtastic.serial_interface as si
     print("Connecting...")
@@ -191,7 +196,7 @@ def main():
         print(json.dumps({k: rep[k] for k in ("node", "lora", "channel0")}, indent=2))
         print("Other nodes in its database:", len(rep["nodes_in_db"]))
         if args.fix:
-            apply_fix(iface, {"region": "NP_865", "preset": "LONG_FAST"})
+            apply_fix(iface, {"region": args.region, "preset": "LONG_FAST"})
             return
         if args.listen:
             rep["listen"] = listen(iface, args.listen)
@@ -199,14 +204,14 @@ def main():
             print("\nHeard %d packets by radio from other nodes (%d could not be decrypted)."
                   % (l["from_other_nodes_by_radio"], l["undecodable"]))
         path = os.path.join(HERE, "report_%s.json" % (rep["node"]["id"] or "unknown").strip("!"))
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(rep, f, indent=2)
         print("Saved", path)
     finally:
         iface.close()
     reports = []
     for p in sorted(glob.glob(os.path.join(HERE, "report_*.json"))):
-        with open(p) as f:
+        with open(p, encoding="utf-8") as f:
             reports.append(json.load(f))
     compare(reports)
 

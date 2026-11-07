@@ -2,17 +2,18 @@
 layout: null
 permalink: /llms.txt
 ---
-# Meshtastic LoRa mesh for Kathmandu
+# Meshtastic LoRa mesh for Singapore
 
-> A beginner-friendly guide and open-source web control panel for Meshtastic LoRa mesh radios in Nepal (region NP_865, 865–868 MHz; the default LongFast channel is on 867.875 MHz). It covers Heltec WiFi LoRa 32 V3 and Seeed XIAO ESP32S3 + Wio-SX1262 boards, the Paxcounter, MQTT map reporting to meshmap.net, and troubleshooting. Code is GPL-3.0; the guide is CC BY-SA 4.0. Not affiliated with Meshtastic LLC.
+> A beginner-friendly guide and open-source web control panel for Meshtastic LoRa mesh radios in Singapore on Windows (region SG_923, 917–925 MHz; the default LongFast channel is on 917.875 MHz, slot 3 of 32). It covers the Seeed XIAO ESP32S3 + Wio-SX1262 kit (primary) and Heltec WiFi LoRa 32 V3, the Paxcounter, MQTT map reporting to meshmap.net, and troubleshooting. A Singapore and Windows adaptation of the Kathmandu guide by saadcaffeine, maintained by Edible Makerspace. Code is GPL-3.0; the guide is CC BY-SA 4.0. Not affiliated with Meshtastic LLC.
 
-Key facts: Nepal uses NP_865 (865.0–868.0 MHz, 100% duty cycle, max 30 dBm). LoRa on Meshtastic's LONG_FAST preset runs at about 1 kbit/s over kilometres. All nodes must share region, preset, channel name and key, and should share firmware version: in this project a Heltec V3 on 2.7.26 could not hear XIAO boards on 2.5.2 until it was reflashed to match. Paxcounter needs an ESP32 with WiFi and Bluetooth off.
+Key facts: Singapore uses SG_923 (917.0–925.0 MHz, firmware power limit 20 dBm = 100 mW). Sources disagree on the legal duty-cycle limit (100% vs 10%), so check IMDA TS SRD. LoRa on Meshtastic's LONG_FAST preset runs at about 1 kbit/s over kilometres. All nodes must share region, preset, channel name and key, and should share firmware version. Nodes on other regions (for example MY_919, whose LongFast is 922.875 MHz) cannot hear SG_923 nodes. On Windows, run commands as `py -m meshtastic ...` and find the board with Device Manager or [System.IO.Ports.SerialPort]::GetPortNames(). Paxcounter needs an ESP32 with WiFi and Bluetooth off.
 
 ## Guide
 - [LoRa for WiFi and Bluetooth users]({{ site.url }}{{ site.baseurl }}/lora-for-wifi-and-bluetooth-users.html): range, speed, frequency, mesh, LoRa vs LoRaWAN
-- [Hardware]({{ site.url }}{{ site.baseurl }}/hardware.html): Heltec V3, Seeed XIAO ESP32S3 + Wio-SX1262, band variants, antennas
-- [Getting started]({{ site.url }}{{ site.baseurl }}/getting-started.html): flash, set NP_865, CLI commands
-- [Nepal NP_865]({{ site.url }}{{ site.baseurl }}/nepal-np865.html): region table and how 867.875 MHz is derived
+- [Hardware]({{ site.url }}{{ site.baseurl }}/hardware.html): Seeed XIAO ESP32S3 + Wio-SX1262, Heltec V3, band variants, antennas
+- [Windows setup]({{ site.url }}{{ site.baseurl }}/windows-setup.html): Python, COM ports, PowerShell, common errors
+- [Getting started]({{ site.url }}{{ site.baseurl }}/getting-started.html): flash, set SG_923, PowerShell commands
+- [Singapore SG_923]({{ site.url }}{{ site.baseurl }}/singapore-sg923.html): region table, how 917.875 MHz is derived, regulatory sources
 - [Paxcounter]({{ site.url }}{{ site.baseurl }}/paxcounter.html): counting nearby devices
 - [Map reporting and MQTT]({{ site.url }}{{ site.baseurl }}/map-reporting-mqtt.html): meshmap.net checklist
 - [Control panel]({{ site.url }}{{ site.baseurl }}/control-panel.html): Flask dashboard and mode switcher

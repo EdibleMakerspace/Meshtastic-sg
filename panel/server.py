@@ -159,7 +159,7 @@ class Panel:
         os.makedirs(args.data_dir, exist_ok=True)
         self.csv_path = os.path.join(args.data_dir, "pax_log.csv")
         if not os.path.exists(self.csv_path):
-            with open(self.csv_path, "w", newline="") as f:
+            with open(self.csv_path, "w", newline="", encoding="utf-8") as f:
                 csv.writer(f).writerow(["time", "from", "wifi", "ble", "total"])
         self._last_sim = 0.0
         self.modules = []
@@ -262,7 +262,7 @@ class Panel:
             self.pax_hist.append(r)
             if r.get("from") in self.live:
                 self.live[r["from"]]["pax"] = {"wifi": r["wifi"], "ble": r["ble"], "ts": r["ts"]}
-        with open(self.csv_path, "a", newline="") as f:
+        with open(self.csv_path, "a", newline="", encoding="utf-8") as f:
             csv.writer(f).writerow([datetime.fromtimestamp(r["ts"]).isoformat(timespec="seconds"),
                                     r.get("from"), r["wifi"], r["ble"], r["wifi"] + r["ble"]])
 
@@ -446,7 +446,7 @@ def create_app(panel):
 
     @app.get("/api/pax.csv")
     def pax_csv():
-        with open(panel.csv_path, "r") as f:
+        with open(panel.csv_path, "r", encoding="utf-8") as f:
             data = f.read()
         return Response(data, mimetype="text/csv",
                         headers={"Content-Disposition": "attachment; filename=pax_log.csv"})
@@ -457,7 +457,7 @@ def create_app(panel):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--port", help="serial port, e.g. /dev/cu.usbmodem1101 (default: auto)")
+    ap.add_argument("--port", help="serial port, e.g. COM5 on Windows, /dev/ttyACM0 on Linux (default: auto)")
     ap.add_argument("--mock", action="store_true", help="simulate a board")
     ap.add_argument("--host", default="127.0.0.1",
                     help="address to listen on (0.0.0.0 to open to your network)")

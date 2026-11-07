@@ -29,7 +29,7 @@ Or click **Paxcounter sensor** in the [control panel](control-panel.md), which a
 - **Control panel:** the "Devices nearby" card shows the latest total and a WiFi and Bluetooth chart, and offers a CSV download.
 
   ![Devices nearby chart](assets/img/panel-paxcounter.png)
-- **Terminal:** [`tools/paxwatch.py`](https://github.com/saadcaffeine/Meshtastic-GOSHkathmandu/tree/main/tools) prints each report as it arrives, for example `PAX !a1f80460 wifi=3 ble=7 total=10 ##########`.
+- **Terminal:** [`tools/paxwatch.py`](https://github.com/EdibleMakerspace/Meshtastic-sg/tree/main/tools) prints each report as it arrives, for example `PAX !a1f80460 wifi=3 ble=7 total=10 ##########`.
 
 ## A classroom demo
 

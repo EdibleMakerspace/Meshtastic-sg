@@ -1,17 +1,17 @@
 # GitHub Pages settings. In the repository: Settings → Pages → Source: "Deploy from a branch",
 # Branch: main, Folder: /docs
-title: Meshtastic LoRa mesh for Kathmandu
+title: Meshtastic LoRa mesh for Singapore
 description: >-
   A beginner-friendly guide and open-source control panel for Meshtastic LoRa mesh radios
-  in Nepal (NP_865, 865–868 MHz): Heltec V3 and Seeed XIAO ESP32S3 setup, Paxcounter,
+  in Singapore (SG_923, 917–925 MHz) on Windows: Seeed XIAO ESP32S3 setup, Paxcounter,
   MQTT map reporting, troubleshooting and a live web dashboard.
 lang: en
-url: https://saadcaffeine.github.io
-baseurl: /Meshtastic-GOSHkathmandu
-repository: saadcaffeine/Meshtastic-GOSHkathmandu
+url: https://ediblemakerspace.github.io
+baseurl: /Meshtastic-sg
+repository: EdibleMakerspace/Meshtastic-sg
 theme: jekyll-theme-cayman
-author: Saad Chinoy
-github_username: saadcaffeine
+author: Edible Makerspace
+github_username: EdibleMakerspace
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
